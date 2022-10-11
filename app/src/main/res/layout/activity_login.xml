@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/buttonContinuarRegistrarse"
+        android:id="@+id/buttonRegistrarse"
         android:layout_width="306dp"
         android:layout_height="47dp"
         android:backgroundTint="#FFFFFF"
