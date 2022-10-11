@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Jumis</string>
+    <string name="iconoHome">Home</string>
+    <string name="iconoFiltro">Filtro</string>
+    <string name="iconoAjustes">Ajustes</string>
+    <string name="iconoUsuario">Usuario</string>
 </resources>
