@@ -14,12 +14,6 @@
         android:title="@string/iconoAjustes"
         app:showAsAction="always"/>
     <item
-        android:id="@+id/filtro"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_filter_alt_24"
-        android:title="@string/iconoFiltro"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/paginaUser"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
