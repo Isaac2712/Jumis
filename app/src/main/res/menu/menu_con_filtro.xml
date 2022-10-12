@@ -4,21 +4,26 @@
         android:id="@+id/paginaHome"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
+        app:showAsAction="always"
         android:title="@string/iconoHome"/>
+
     <item
         android:id="@+id/paginaAjustes"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_settings_24"
+        app:showAsAction="always"
         android:title="@string/iconoAjustes"/>
     <item
         android:id="@+id/filtro"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_filter_alt_24"
+        app:showAsAction="always"
         android:title="@string/iconoFiltro"/>
     <item
         android:id="@+id/paginaUser"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_person_24"
+        app:showAsAction="always"
         android:title="@string/iconoUsuario"/>
 
 </menu>
