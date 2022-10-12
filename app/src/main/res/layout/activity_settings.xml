@@ -7,7 +7,7 @@
     tools:context=".Settings">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewTipografia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -15,10 +15,10 @@
         android:text="Tipografía"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewFuente" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewFuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -26,7 +26,7 @@
         android:text="Tamaño de fuente"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTemaOscuro" />
 
     <TextView
         android:id="@+id/textViewRegistro3"
@@ -43,20 +43,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTemaOscuro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="72dp"
         android:text="Tema oscuro"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/switch1"
+        app:layout_constraintEnd_toStartOf="@+id/switchTemaOscuro"
         app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistro3" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/switchTemaOscuro"
         android:layout_width="80dp"
         android:layout_height="43dp"
         android:layout_marginTop="60dp"
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistro3" />
 
     <EditText
-        android:id="@+id/editTextNumberFuente"
+        android:id="@+id/editTextNumberFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -77,30 +77,30 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.209"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/switch1" />
+        app:layout_constraintStart_toEndOf="@+id/textViewFuente"
+        app:layout_constraintTop_toBottomOf="@+id/switchTemaOscuro" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipografia"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu_sin_filtro" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerTypography"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipografia" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
