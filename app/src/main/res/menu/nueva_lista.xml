@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/añadirNuevaLista"
+        android:id="@+id/btnMore"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_add_24"
-        android:title="@string/iconoHome"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_baseline_more_vert_24"
+        app:showAsAction="always">
+
+        <menu>
+            <item
+                android:id="@+id/añadirNuevaLista"
+                android:enabled="true"
+                android:icon="@drawable/ic_baseline_add_24"
+                android:title="@string/iconoAñadirLista"
+                app:showAsAction="ifRoom|withText"
+                app:switchPadding="4dp"/>
+
+            <item
+                android:id="@+id/añadirNuevaTarea"
+                android:enabled="true"
+                android:icon="@drawable/ic_baseline_add_task_24"
+                android:title="@string/iconoAñadirTarea"
+                app:showAsAction="ifRoom|withText" />
+        </menu>
+
+    </item>
 </menu>

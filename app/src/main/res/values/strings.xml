@@ -4,4 +4,6 @@
     <string name="iconoFiltro">Filtro</string>
     <string name="iconoAjustes">Ajustes</string>
     <string name="iconoUsuario">Usuario</string>
+    <string name="iconoAñadirLista">Añdir Lista</string>
+    <string name="iconoAñadirTarea">Añdir Tarea</string>
 </resources>

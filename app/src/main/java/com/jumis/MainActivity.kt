@@ -7,11 +7,18 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        /* Codigo comentario: #002 */
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        getSupportActionBar()?.setIcon(R.drawable.logo)
+        /*FIN 002*/
+
         setContentView(R.layout.activity_main)
 
         /*
@@ -41,13 +48,22 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.añadirNuevaLista -> {
-                Toast.makeText(this, "Has hecho click en añadir nueva lista", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Lista", Toast.LENGTH_LONG)
+                    .show()
+                return true
+            }
+            R.id.añadirNuevaTarea -> {
+                Toast.makeText(this, "Tarea", Toast.LENGTH_LONG)
+                    .show()
+                return true
+            }
+            R.id.btnMore -> {
+                Toast.makeText(this, "More", Toast.LENGTH_LONG)
                     .show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
     /*FIN 001*/
 }
