@@ -39,10 +39,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PasswordLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPasswordLogin" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/PasswordLogin"
+        android:id="@+id/inputPasswordLogin"
         android:layout_width="336dp"
         android:layout_height="42dp"
         android:layout_marginTop="8dp"
@@ -51,10 +51,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPassword2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordLogin" />
 
     <TextView
-        android:id="@+id/textViewPassword2"
+        android:id="@+id/textViewPasswordLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -63,10 +63,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailLogin" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/EmailLogin"
+        android:id="@+id/inputEmailLogin"
         android:layout_width="336dp"
         android:layout_height="42dp"
         android:layout_marginTop="8dp"
@@ -75,10 +75,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewEmail2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmailLogin" />
 
     <TextView
-        android:id="@+id/textViewEmail2"
+        android:id="@+id/textViewEmailLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -88,10 +88,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.099"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRegistro2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewIniciarSesion" />
 
     <TextView
-        android:id="@+id/textViewRegistro2"
+        android:id="@+id/textViewIniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -105,11 +105,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRegistro2"
+        app:layout_constraintBottom_toTopOf="@+id/textViewIniciarSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
