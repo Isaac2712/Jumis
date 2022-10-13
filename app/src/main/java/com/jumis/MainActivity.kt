@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.CompoundButton
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         getSupportActionBar()?.setIcon(R.drawable.logo)
         /*FIN 002*/
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_settings)
 
         /*
         Intents para las actividades

@@ -10,7 +10,7 @@
         android:id="@+id/textViewTipografia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Tipografía"
         android:textSize="24sp"
@@ -21,8 +21,8 @@
         android:id="@+id/textViewFuente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="Tamaño de fuente"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,8 +50,6 @@
         android:layout_marginTop="72dp"
         android:text="Tema oscuro"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/switchTemaOscuro"
-        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistro3" />
 
@@ -65,6 +63,7 @@
         android:scaleY="1.5"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewTemaOscuro"
         app:layout_constraintTop_toBottomOf="@+id/textViewRegistro3" />
 
     <EditText
@@ -99,6 +98,7 @@
         android:layout_marginTop="16dp"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewTipografia" />
 
