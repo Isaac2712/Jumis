@@ -1,5 +1,6 @@
 package com.jumis
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -20,14 +21,20 @@ class Menubottom : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
             return when(item.itemId) {
                 R.id.paginaHome -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
                     Toast.makeText(this, "Has hecho click en home" , Toast.LENGTH_LONG).show()
                     return true
                 }
                 R.id.paginaUser -> {
+                    val intent = Intent(this, User::class.java)
+                    startActivity(intent)
                     Toast.makeText(this, "Has hecho click en user" , Toast.LENGTH_LONG).show()
                     return true
                 }
                 R.id.paginaAjustes -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
                     Toast.makeText(this, "Has hecho click en ajustes" , Toast.LENGTH_LONG).show()
                     return true
                 }
@@ -37,6 +44,5 @@ class Menubottom : AppCompatActivity() {
                 }
                 else -> super.onOptionsItemSelected(item)
             }
-
     }
 }
