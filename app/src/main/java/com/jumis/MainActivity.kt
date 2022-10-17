@@ -22,24 +22,19 @@ class MainActivity : AppCompatActivity() {
         getSupportActionBar()?.setIcon(R.drawable.logo)
         /*FIN 002*/
 
-        setContentView(R.layout.activity_settings)
+        setContentView(R.layout.activity_main)
 
-        /*
-        Intents para las actividades
-
-        Login --> Register
-        val button: Button = findViewById(R.id.buttonRegister)
+        val button: Button = findViewById(R.id.buttonLogin)
         button.setOnClickListener {
-            val intent = Intent(this@Login, Register::class.java)
+            val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
 
-        Register --> Login
-        val button: Button = findViewById(R.id.buttonRegister)
-        button.setOnClickListener {
-            val intent = Intent(this@Register, Login::class.java)
+        val buttonR: Button = findViewById(R.id.buttonRegister)
+        buttonR.setOnClickListener {
+            val intent = Intent(this, Register::class.java)
             startActivity(intent)
-        } */
+        }
     }
 
     /* Codigo de comentario: #001*/
