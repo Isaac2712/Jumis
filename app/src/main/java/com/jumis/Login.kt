@@ -26,6 +26,7 @@ class Login : AppCompatActivity() {
             else
             {
                 Toast.makeText(this, "No puedes dejar los campos vacios", Toast.LENGTH_LONG).show()
+
             }
         }
         /*FIN 004*/
