@@ -1,28 +1,74 @@
 package com.jumis
 
+import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.CompoundButton
-import android.widget.Switch
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatDelegate
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setContentView(R.layout.activity_main)
         /* Codigo comentario: #002 */
         getSupportActionBar()?.setDisplayShowHomeEnabled(true)
         getSupportActionBar()?.setIcon(R.drawable.logo)
         /*FIN 002*/
 
-        setContentView(R.layout.activity_main)
+
+        val dataBaseHelper = DatabaseHelper(applicationContext)
+
+        val db_reader = dataBaseHelper.readableDatabase
+
+        val db_writer = dataBaseHelper.writableDatabase
+
+
+        // Create a new map of values, where column names are the keys
+
+        var values = ContentValues().apply {
+
+        put("email", "juan@gmail.com")
+        put("password", "123")
+        }
+
+        // Insert the new row, returning the primary key value of the new row
+        val newRowId = db_writer?.insert("Usuario", null, values)
+        println("INSERT--" + newRowId)
+
+
+        // Update rows, return the number of updated rows
+        val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
+        arrayOf("juan@gmail.com"))
+
+        // Issue SQL statement, return the number of deleted rows
+        //val deletedRows = db_writer?.delete("Usuario", "email LIKE ?",
+        //arrayOf("juan@gmail.com"))
+
+
+         // Do a query for reading data, return a cursor with all the recovered data
+        val cursor = db_reader.query(
+        "Usuario", // The table to query
+        null, // The array of columns to return (pass null to get all)
+        null, // The columns for the WHERE clause
+        null, // The values for the WHERE clause
+        null, // don't group the rows
+        null, // don't filter by row groups
+        null // The sort order
+        )
+        // Store all recovered data
+        with(cursor) {
+            while (moveToNext()) {
+                val itemUid = getLong(getColumnIndexOrThrow("UID"))
+                val itemEmail = getString(getColumnIndexOrThrow("email"))
+                val itemPassword = getString(getColumnIndexOrThrow("password"))
+                println(itemEmail)
+            }
+        }
+        cursor.close()
+
 
         val button: Button = findViewById(R.id.buttonLogin)
         button.setOnClickListener {
@@ -35,6 +81,71 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
+
+
+        val buttonU: Button = findViewById(R.id.buttonUse)
+        buttonU.setOnClickListener {
+            val intent = Intent(this, User::class.java)
+            startActivity(intent)
+        }
+
+
+
+        /* Profesor
+        Paso 1
+
+        var buttonLogin : Button = findViewById(R.id.buttonLogin)
+        var buttonRegister : Button = findViewById(R.id.buttonRegister)
+
+        buttonRegister.setOnClickListener {
+            var intent = Intent(this, User::class.java)
+            startActivity(intent)
+        }
+        --Al login--
+
+        --Paso 2
+        buttonLogin.setOnClickListener {
+            var editTextUser : EditText = findViewById(R.id.editTextUser)
+            var editTextPasswd : EditText = findViewById(R.id.editTextPasswd)
+
+            if(editTextUser.text.toString().equals("Juan") && editTextPasswd.text.toString().equals("1234")){
+                var intent : Intent = Intent(this, Home::class.java)
+                intent.putExtra("Username", editTextUser.text.toString())
+
+            }
+            --Le manda el contenido de editTextUser al home
+            * Ir a home
+
+            var intent = Intent(this, User::class.java)
+            startActivity(intent)
+        }
+
+
+
+
+        --Para que la app acceda a la cámara
+        buttonFoto.setOnClickListener {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivity(intent)
+        }
+        *** Importante ***: hay un intent para alarmas y calendario, para las tareas
+
+        --Para abrir un enlace de internet
+        buttonGoogle.setOnClickListener {
+            val i = Intent(intent.ACTION_VIEW)
+            i.data = Uri.parse("https://www.google.es")
+            startActivity(i)
+            startActivity(intent)
+        }
+
+
+
+
+        */
+
+
+
+
 
     }
 

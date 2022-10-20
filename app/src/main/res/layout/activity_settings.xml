@@ -79,6 +79,17 @@
         app:layout_constraintStart_toEndOf="@+id/textViewFuente"
         app:layout_constraintTop_toBottomOf="@+id/switchTemaOscuro" />
 
+    <Spinner
+        android:id="@+id/spinnerTypography"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipografia" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -90,16 +101,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewTipografia"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Spinner
-        android:id="@+id/spinnerTypography"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTipografia" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
