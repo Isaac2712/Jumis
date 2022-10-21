@@ -17,7 +17,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 "email TEXT NOT NULL, " +
                 "password TEXT NOT NULL)")
 
-        db.execSQL("CREATE TABLE Usuario2 (" +
+        db.execSQL("CREATE TABLE Tarea (" +
                 "UID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "email TEXT NOT NULL, " +
                 "password TEXT NOT NULL)")
