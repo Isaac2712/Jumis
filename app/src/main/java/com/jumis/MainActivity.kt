@@ -20,14 +20,10 @@ class MainActivity : AppCompatActivity() {
 
 
         val dataBaseHelper = DatabaseHelper(applicationContext)
-
         val db_reader = dataBaseHelper.readableDatabase
-
         val db_writer = dataBaseHelper.writableDatabase
 
-
         // Create a new map of values, where column names are the keys
-
         var values = ContentValues().apply {
 
         put("email", "juan@gmail.com")
@@ -38,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         val newRowId = db_writer?.insert("Usuario", null, values)
         println("INSERT--" + newRowId)
 
-
         // Update rows, return the number of updated rows
         val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
         arrayOf("juan@gmail.com"))
@@ -46,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         // Issue SQL statement, return the number of deleted rows
         //val deletedRows = db_writer?.delete("Usuario", "email LIKE ?",
         //arrayOf("juan@gmail.com"))
-
 
          // Do a query for reading data, return a cursor with all the recovered data
         val cursor = db_reader.query(
@@ -69,7 +63,6 @@ class MainActivity : AppCompatActivity() {
         }
         cursor.close()
 
-
         val buttonLogin: Button = findViewById(R.id.buttonLogin)
         buttonLogin.setOnClickListener {
             val intent = Intent(this, Login::class.java)
@@ -84,7 +77,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonHome: Button = findViewById(R.id.buttonHome)
         buttonHome.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
@@ -99,9 +92,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, User::class.java)
             startActivity(intent)
         }
-
-
-
 
 
         /* Profesor

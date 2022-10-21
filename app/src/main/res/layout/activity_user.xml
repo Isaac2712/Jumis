@@ -12,37 +12,34 @@
         android:layout_height="50dp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:text="User"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonSettingsUser"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/buttonSettingsUser" />
 
     <Button
         android:id="@+id/buttonSettingsUser"
-        android:layout_width="133dp"
+        android:layout_width="134dp"
         android:layout_height="50dp"
+        android:layout_marginStart="4dp"
         android:drawableLeft="@drawable/ic_baseline_settings_24"
         android:text="Settings"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.041"
-        app:layout_constraintStart_toEndOf="@+id/buttonHomeUser"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/buttonHomeUser" />
 
     <Button
         android:id="@+id/buttonHomeUser"
         android:layout_width="133dp"
         android:layout_height="50dp"
+        android:layout_marginStart="4dp"
         android:drawableLeft="@drawable/ic_baseline_home_24"
         android:text="Home"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGuardarUsuario"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView

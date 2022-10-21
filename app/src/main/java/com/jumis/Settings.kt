@@ -33,7 +33,7 @@ class Settings : AppCompatActivity() {
 
         val buttonHomeSettings: Button = findViewById(R.id.buttonHomeSettings)
         buttonHomeSettings.setOnClickListener {
-            val intent = Intent(this, Home::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
