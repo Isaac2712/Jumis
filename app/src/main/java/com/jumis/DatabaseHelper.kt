@@ -24,7 +24,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-// This database is only a cache for online data, so its upgrade policy is to simply to discard the data and start over
+    // This database is only a cache for online data, so its upgrade policy is to simply to discard the data and start over
         db.execSQL("DROP TABLE IF EXISTS Usuario")
         db.execSQL("DROP TABLE IF EXISTS Usuario2")
         onCreate(db)

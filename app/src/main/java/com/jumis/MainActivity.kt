@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         // Create a new map of values, where column names are the keys
         var values = ContentValues().apply {
-
-        put("email", "juan@gmail.com")
-        put("password", "123")
+            put("email", "juan@gmail.com")
+            put("password", "123")
         }
 
         // Insert the new row, returning the primary key value of the new row
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 val itemUid = getLong(getColumnIndexOrThrow("UID"))
                 val itemEmail = getString(getColumnIndexOrThrow("email"))
                 val itemPassword = getString(getColumnIndexOrThrow("password"))
-                println(itemEmail)
+                println("Email " + itemEmail)
             }
         }
         cursor.close()
