@@ -22,7 +22,7 @@
 
     <Button
         android:id="@+id/buttonSettings"
-        android:layout_width="134dp"
+        android:layout_width="133dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
         android:drawableLeft="@drawable/ic_baseline_settings_24"

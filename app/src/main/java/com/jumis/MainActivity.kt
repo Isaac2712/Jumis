@@ -25,9 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         // Create a new map of values, where column names are the keys
         var values = ContentValues().apply {
-
-        put("email", "juanjo@gmail.com")
-        put("password", "123")
+            put("email", "juan@gmail.com")
+            put("password", "123")
         }
 
         // Insert the new row, returning the primary key value of the new row
@@ -36,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         // Update rows, return the number of updated rows
         val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
-        arrayOf("juanjo@gmail.com"))
+        arrayOf("juan@gmail.com"))
 
         // Issue SQL statement, return the number of deleted rows
         //val deletedRows = db_writer?.delete("Usuario", "email LIKE ?",
@@ -58,7 +57,7 @@ class MainActivity : AppCompatActivity() {
                 val itemUid = getLong(getColumnIndexOrThrow("UID"))
                 val itemEmail = getString(getColumnIndexOrThrow("email"))
                 val itemPassword = getString(getColumnIndexOrThrow("password"))
-                println("Email: " + itemUid)
+                println("Email " + itemEmail)
             }
         }
         cursor.close()

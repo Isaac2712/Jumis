@@ -16,7 +16,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/buttonSettingsUser" />
+        app:layout_constraintStart_toEndOf="@+id/buttonSettingsUser"
+        app:layout_constraintTop_toBottomOf="@+id/buttonGuardarUsuario"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonSettingsUser"
@@ -116,18 +118,23 @@
         android:id="@+id/buttonEditarUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#4CAF50"
         android:text="Editar"
-        tools:layout_editor_absoluteX="168dp"
-        tools:layout_editor_absoluteY="342dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextViewEmailUsuario2" />
 
     <Button
         android:id="@+id/buttonGuardarUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:backgroundTint="#2196F3"
         android:text="Guardar"
-        tools:layout_editor_absoluteX="280dp"
-        tools:layout_editor_absoluteY="341dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toEndOf="@+id/buttonEditarUsuario"
+        app:layout_constraintTop_toBottomOf="@+id/autoCompleteTextViewEmailUsuario2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
