@@ -92,6 +92,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val buttonTask: Button = findViewById(R.id.buttonTask)
+        buttonTask.setOnClickListener {
+            val intent = Intent(this, Task::class.java)
+            startActivity(intent)
+        }
+
 
         /* Profesor
         Paso 1
