@@ -15,7 +15,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("CREATE TABLE User (" +
                 "USERID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "email TEXT NOT NULL, " +
-                "prueba TEXT NOT NULL, " +
                 "password TEXT NOT NULL)")
 
         db.execSQL("CREATE TABLE UserTask (" +
@@ -35,9 +34,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     // This database is only a cache for online data, so its upgrade policy is to simply to discard the data and start over
-        db.execSQL("DROP TABLE IF EXISTS User")
-        db.execSQL("DROP TABLE IF EXISTS Task")
-        db.execSQL("DROP TABLE IF EXISTS UserTask")
+        //db.execSQL("DROP TABLE IF EXISTS User")
+        //db.execSQL("DROP TABLE IF EXISTS Task")
+        //db.execSQL("DROP TABLE IF EXISTS UserTask")
         onCreate(db)
     }
     override fun onDowngrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
