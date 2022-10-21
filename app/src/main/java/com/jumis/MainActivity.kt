@@ -70,18 +70,35 @@ class MainActivity : AppCompatActivity() {
         cursor.close()
 
 
-        val button: Button = findViewById(R.id.buttonLogin)
-        button.setOnClickListener {
+        val buttonLogin: Button = findViewById(R.id.buttonLogin)
+        buttonLogin.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
 
-        val buttonR: Button = findViewById(R.id.buttonRegister)
-        buttonR.setOnClickListener {
+        val buttonRegister: Button = findViewById(R.id.buttonRegister)
+        buttonRegister.setOnClickListener {
             val intent = Intent(this, Register::class.java)
             startActivity(intent)
         }
 
+        val buttonHome: Button = findViewById(R.id.buttonHome)
+        buttonHome.setOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        }
+
+        val buttonSettings: Button = findViewById(R.id.buttonSettings)
+        buttonSettings.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
+
+        val buttonUser: Button = findViewById(R.id.buttonUser)
+        buttonUser.setOnClickListener {
+            val intent = Intent(this, User::class.java)
+            startActivity(intent)
+        }
 
 
 

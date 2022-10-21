@@ -1,7 +1,9 @@
 package com.jumis
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.CompoundButton
 import android.widget.Switch
 import android.widget.Toast
@@ -28,5 +30,26 @@ class Settings : AppCompatActivity() {
             }
         }
         /* FIN 003 */
+
+        val buttonHomeSettings: Button = findViewById(R.id.buttonHomeSettings)
+        buttonHomeSettings.setOnClickListener {
+            val intent = Intent(this, Home::class.java)
+            startActivity(intent)
+        }
+
+        val buttonSettingsSettings: Button = findViewById(R.id.buttonSettingsSettings)
+        buttonSettingsSettings.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
+
+        val buttonUserSettings: Button = findViewById(R.id.buttonUserSettings)
+        buttonUserSettings.setOnClickListener {
+            val intent = Intent(this, User::class.java)
+            startActivity(intent)
+        }
+
+
+
     }
 }
