@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         // Create a new map of values, where column names are the keys
         var values = ContentValues().apply {
             put("email", "juan@gmail.com")
+            put("prueba", "pueba")
             put("password", "123")
         }
 
@@ -97,7 +98,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Task::class.java)
             startActivity(intent)
         }
-
 
         /* Profesor
         Paso 1
