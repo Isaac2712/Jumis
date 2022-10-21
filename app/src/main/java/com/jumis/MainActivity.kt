@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         getSupportActionBar()?.setIcon(R.drawable.logo)
         /*FIN 002*/
 
-
         val dataBaseHelper = DatabaseHelper(applicationContext)
         val db_reader = dataBaseHelper.readableDatabase
         val db_writer = dataBaseHelper.writableDatabase
