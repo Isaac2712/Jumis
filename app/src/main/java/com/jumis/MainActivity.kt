@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val db_reader = dataBaseHelper.readableDatabase
         val db_writer = dataBaseHelper.writableDatabase
 
-        // Create a new map of values, where column names are the keys
+        /*// Create a new map of values, where column names are the keys
         var values = ContentValues().apply {
             put("email", "juan@gmail.com")
             put("password", "123")
@@ -31,15 +31,14 @@ class MainActivity : AppCompatActivity() {
 
         // Insert the new row, returning the primary key value of the new row
         val newRowId = db_writer?.insert("User", null, values)
-        println("INSERT--" + newRowId)
+        println("INSERT--" + newRowId)*/
 
         // Update rows, return the number of updated rows
         //val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
         //arrayOf("juan@gmail.com"))
 
         // Issue SQL statement, return the number of deleted rows
-        //val deletedRows = db_writer?.delete("Usuario", "email LIKE ?",
-        //arrayOf("juan@gmail.com"))
+        //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf("AS@gmail.com"))
 
          // Do a query for reading data, return a cursor with all the recovered data
         val cursor = db_reader.query(
@@ -54,10 +53,12 @@ class MainActivity : AppCompatActivity() {
         // Store all recovered data
         with(cursor) {
             while (moveToNext()) {
-                val itemUid = getLong(getColumnIndexOrThrow("UID"))
+                val itemUid = getLong(getColumnIndexOrThrow("USERID"))
                 val itemEmail = getString(getColumnIndexOrThrow("email"))
                 val itemPassword = getString(getColumnIndexOrThrow("password"))
+                //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf(itemEmail.toString()))
                 println("Email " + itemEmail)
+                println("Password " + itemPassword)
             }
         }
         cursor.close()
@@ -118,7 +119,6 @@ class MainActivity : AppCompatActivity() {
             if(editTextUser.text.toString().equals("Juan") && editTextPasswd.text.toString().equals("1234")){
                 var intent : Intent = Intent(this, Home::class.java)
                 intent.putExtra("Username", editTextUser.text.toString())
-
             }
             --Le manda el contenido de editTextUser al home
             * Ir a home
@@ -126,9 +126,6 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this, User::class.java)
             startActivity(intent)
         }
-
-
-
 
         --Para que la app acceda a la cámara
         buttonFoto.setOnClickListener {

@@ -53,7 +53,6 @@ class Task : AppCompatActivity() {
                 println("Name List: " + itemNameList)
                 println("Date: " + itemDate)
                 println("Hour: " + itemHour)
-
             }
         }
         cursorTask.close()

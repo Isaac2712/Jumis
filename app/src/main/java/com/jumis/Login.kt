@@ -13,20 +13,57 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val dataBaseHelper = DatabaseHelper(applicationContext)
+        val db_reader = dataBaseHelper.readableDatabase
+
         /*Codigo comentario: #004 */
+        var usuarioEncontrado: Boolean = false;
+        var mensaje = ""
+        var itemEmail: String?
+        var itemPassword: String?
         val email_usu: TextInputEditText = findViewById(R.id.inputEmailLogin)
         val pass_usu: TextInputEditText = findViewById(R.id.inputPasswordLogin)
         val buttonL: Button = findViewById(R.id.buttonContinuarLogin)
         buttonL.setOnClickListener {
-            if(!email_usu.text.toString().equals("") && !pass_usu.text.toString().equals(""))
+            if(email_usu.text.toString().isNotBlank() && pass_usu.text.toString().isNotBlank())
             {
-                val intent = Intent(this@Login, MainActivity::class.java)
-                startActivity(intent)
+                val cursor = db_reader.query(
+                    "User", // The table to query
+                    null, // The array of columns to return (pass null to get all)
+                    null, // The columns for the WHERE clause
+                    null, // The values for the WHERE clause
+                    null, // don't group the rows
+                    null, // don't filter by row groups
+                    null // The sort order
+                )
+                // Store all recovered data
+                with(cursor) {
+                    while (moveToNext() && !usuarioEncontrado) {
+                        println("Entra al while")
+                        itemEmail = getString(getColumnIndexOrThrow("email"))
+                        itemPassword = getString(getColumnIndexOrThrow("password"))
+                        if(email_usu.text.toString().equals(itemEmail.toString()) && pass_usu.text.toString().equals(itemPassword.toString())) {
+                            usuarioEncontrado = true
+                            println("Entra a usuario encontrado")
+                        } else {
+                             mensaje = "El usuario no existe o la contraseña no es valida."
+                        }
+                    }
+                }
+                cursor.close()
+                if(usuarioEncontrado)
+                {
+                    println("Entra a usuario encontrado 2 IF")
+                    val intent = Intent(this@Login, MainActivity::class.java)
+                    startActivity(intent)
+                } else
+                {
+                    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+                }
             }
             else
             {
                 Toast.makeText(this, "No puedes dejar los campos vacios", Toast.LENGTH_LONG).show()
-
             }
         }
         /*FIN 004*/
