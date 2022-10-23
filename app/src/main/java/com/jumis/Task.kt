@@ -3,6 +3,7 @@ package com.jumis
 import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.database.sqlite.SQLiteDatabase;
 
 class Task : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +17,8 @@ class Task : AppCompatActivity() {
         // Create a new map of values, where column names are the keys
         var valuesTask = ContentValues().apply {
             put("nameTask", "Tarea 1 Android")
-            put("description", "Tarea en la cual hay que realizar ...")
-            put("nameList", "lista ucam")
+            put("description", "Tarea")
+            put("nameList", "Lista ucam")
             put("date", "2022-10-21")
             put("hour", "10:30:00")
         }
@@ -25,6 +26,7 @@ class Task : AppCompatActivity() {
         // Insert the new row, returning the primary key value of the new row
         val newRowId = db_writer_task?.insert("Task", null, valuesTask)
         println("INSERT--" + newRowId)
+
 
         // Do a query for reading data, return a cursor with all the recovered data
         val cursorTask = db_reader_task.query(
@@ -51,13 +53,8 @@ class Task : AppCompatActivity() {
                 println("Name List: " + itemNameList)
                 println("Date: " + itemDate)
                 println("Hour: " + itemHour)
-
             }
         }
         cursorTask.close()
-
-
-
-
     }
 }

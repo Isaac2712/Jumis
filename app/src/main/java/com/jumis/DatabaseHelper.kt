@@ -23,12 +23,10 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
                 "FOREIGN KEY(TASKUSERID) REFERENCES Task(TASKID)," +
                 "FOREIGN KEY(USERTASKID) REFERENCES User(USERID))")
 
-
-
         db.execSQL("CREATE TABLE Task (" +
                 "TASKID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "nameTask TEXT NOT NULL, " +
-                "description TEXT NOT NULL, " +
+                "description VARCHAR(200) NOT NULL, " +
                 "nameList TEXT NOT NULL," +
                 "date DATE NOT NULL," +
                 "hour TIME NOT NULL)")
