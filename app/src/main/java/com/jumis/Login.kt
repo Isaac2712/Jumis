@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputEditText
@@ -53,8 +54,20 @@ class Login : AppCompatActivity() {
                 cursor.close()
                 if(usuarioEncontrado)
                 {
+                    /*Codigo comentario: #104 */
+
+                    var editTextUser : EditText = findViewById(R.id.inputEmailLogin)
+                    var editTextPasswd : EditText = findViewById(R.id.inputPasswordLogin)
+
+
+                    var intent : Intent = Intent(this@Login, MainActivity::class.java)
+                    intent.putExtra("Username", editTextUser.text.toString())
+                    intent.putExtra("Password", editTextPasswd.text.toString())
+
+                    /*FIN 104*/
+
                     println("Entra a usuario encontrado 2 IF")
-                    val intent = Intent(this@Login, MainActivity::class.java)
+
                     startActivity(intent)
                 } else
                 {
@@ -67,6 +80,15 @@ class Login : AppCompatActivity() {
             }
         }
         /*FIN 004*/
+
+
+
+
+
+
+
+
+
 
         val buttonR: Button = findViewById(R.id.buttonRegistrarse)
         buttonR.setOnClickListener {

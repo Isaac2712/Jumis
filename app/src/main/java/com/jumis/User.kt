@@ -3,13 +3,36 @@ package com.jumis
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AutoCompleteTextView
 import android.widget.Button
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.TextView
 
 class User : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user)
+
+
+
+
+
+
+        val intent : Intent = intent
+        val userNameData = intent.getStringExtra("Username")
+        val passwordData = intent.getStringExtra("Password")
+
+
+        var emailUser: String? = userNameData
+        var passwordUser: String? = passwordData
+
+        var textViewUser : TextView = findViewById(R.id.textViewUserEmail)
+        var textViewPassword : TextView = findViewById(R.id.textViewUserPassword)
+
+        textViewUser.text = emailUser
+        textViewPassword.text = passwordUser
+
+
+
 
 
 

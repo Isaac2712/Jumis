@@ -13,6 +13,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        var emailUser: String? = ""
+        var passwordUser: String? = ""
+
+
+
         /* Codigo comentario: #002 */
         getSupportActionBar()?.setDisplayShowHomeEnabled(true)
         getSupportActionBar()?.setIcon(R.drawable.logo)
@@ -89,8 +96,15 @@ class MainActivity : AppCompatActivity() {
 
         val buttonUser: Button = findViewById(R.id.buttonUser)
         buttonUser.setOnClickListener {
-            val intent = Intent(this, User::class.java)
-            startActivity(intent)
+
+                var intent : Intent = Intent(this, User::class.java)
+                intent.putExtra("Username", emailUser)
+                intent.putExtra("Password", passwordUser)
+
+                startActivity(intent)
+
+
+
         }
 
         val buttonTask: Button = findViewById(R.id.buttonTask)
@@ -98,6 +112,23 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Task::class.java)
             startActivity(intent)
         }
+
+
+
+        val intent : Intent = intent
+        val userNameData = intent.getStringExtra("Username")
+        val passwordData = intent.getStringExtra("Password")
+        println("Paso de email: " + userNameData)
+        println("Paso de contrasena: " + passwordData)
+
+        emailUser = userNameData
+        passwordUser = passwordData
+
+
+
+
+
+
 
         /* Profesor
         Paso 1
