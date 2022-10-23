@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val db_writer = dataBaseHelper.writableDatabase
 
         // Create a new map of values, where column names are the keys
+        /*
         var values = ContentValues().apply {
             put("email", "juan@gmail.com")
             put("password", "123")
@@ -61,6 +62,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         cursor.close()
+        */
+
 
         val buttonLogin: Button = findViewById(R.id.buttonLogin)
         buttonLogin.setOnClickListener {
@@ -119,8 +122,8 @@ class MainActivity : AppCompatActivity() {
             if(editTextUser.text.toString().equals("Juan") && editTextPasswd.text.toString().equals("1234")){
                 var intent : Intent = Intent(this, Home::class.java)
                 intent.putExtra("Username", editTextUser.text.toString())
-
             }
+
             --Le manda el contenido de editTextUser al home
             * Ir a home
 
