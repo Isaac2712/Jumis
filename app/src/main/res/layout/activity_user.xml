@@ -101,10 +101,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="@color/white"
         android:text="Editar"
+        android:textColor="#4CAF50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUserPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserPassword"
+        app:strokeColor="#4CAF50" />
 
     <Button
         android:id="@+id/buttonGuardarUsuario"
@@ -142,11 +144,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewPasswordUsuario" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEmail"
+    <EditText
+        android:id="@+id/EditTextEmail"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="441dp" />
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmailUsuario" />
+
+    <EditText
+        android:id="@+id/EditTextPassword"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.59"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordUsuario" />
+
+    <Button
+        android:id="@+id/buttonCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:text="Cancelar"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUserPassword"
+        app:strokeColor="@android:color/holo_red_dark" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
