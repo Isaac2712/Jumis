@@ -40,12 +40,10 @@ class Login : AppCompatActivity() {
                 // Store all recovered data
                 with(cursor) {
                     while (moveToNext() && !usuarioEncontrado) {
-                        println("Entra al while")
                         itemEmail = getString(getColumnIndexOrThrow("email"))
                         itemPassword = getString(getColumnIndexOrThrow("password"))
                         if(email_usu.text.toString().equals(itemEmail.toString()) && pass_usu.text.toString().equals(itemPassword.toString())) {
                             usuarioEncontrado = true
-                            println("Entra a usuario encontrado")
                         } else {
                              mensaje = "El usuario no existe o la contraseña no es valida."
                         }
@@ -59,15 +57,11 @@ class Login : AppCompatActivity() {
                     var editTextUser : EditText = findViewById(R.id.inputEmailLogin)
                     var editTextPasswd : EditText = findViewById(R.id.inputPasswordLogin)
 
-
                     var intent : Intent = Intent(this@Login, MainActivity::class.java)
                     intent.putExtra("Username", editTextUser.text.toString())
                     intent.putExtra("Password", editTextPasswd.text.toString())
 
                     /*FIN 104*/
-
-                    println("Entra a usuario encontrado 2 IF")
-
                     startActivity(intent)
                 } else
                 {
