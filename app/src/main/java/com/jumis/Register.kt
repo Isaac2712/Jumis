@@ -30,7 +30,7 @@ class Register : AppCompatActivity() {
                 val newRowId = db_writer?.insert("User", null, values)
                 println("INSERT--" + newRowId)
 
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, Login::class.java)
                 startActivity(intent)
             }
             else {

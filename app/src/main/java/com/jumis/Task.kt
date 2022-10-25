@@ -14,20 +14,6 @@ class Task : AppCompatActivity() {
         val db_reader_task = dataBaseHelper.readableDatabase
         val db_writer_task = dataBaseHelper.writableDatabase
 
-        // Create a new map of values, where column names are the keys
-        var valuesTask = ContentValues().apply {
-            put("nameTask", "Tarea 1 Android")
-            put("description", "Tarea")
-            put("nameList", "Lista ucam")
-            put("date", "2022-10-21")
-            put("hour", "10:30:00")
-        }
-
-        // Insert the new row, returning the primary key value of the new row
-        val newRowId = db_writer_task?.insert("Task", null, valuesTask)
-        println("INSERT--" + newRowId)
-
-
         // Do a query for reading data, return a cursor with all the recovered data
         val cursorTask = db_reader_task.query(
             "Task", // The table to query

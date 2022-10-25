@@ -42,7 +42,7 @@ class Login : AppCompatActivity() {
                     while (moveToNext() && !usuarioEncontrado) {
                         itemEmail = getString(getColumnIndexOrThrow("email"))
                         itemPassword = getString(getColumnIndexOrThrow("password"))
-                        if(email_usu.text.toString().equals(itemEmail.toString()) && pass_usu.text.toString().equals(itemPassword.toString())) {
+                        if(email_usu.text.toString() == itemEmail.toString() && pass_usu.text.toString() == itemPassword.toString()) {
                             usuarioEncontrado = true
                         } else {
                              mensaje = "El usuario no existe o la contraseña no es valida."
@@ -75,20 +75,10 @@ class Login : AppCompatActivity() {
         }
         /*FIN 004*/
 
-
-
-
-
-
-
-
-
-
         val buttonR: Button = findViewById(R.id.buttonRegistrarse)
         buttonR.setOnClickListener {
             val intent = Intent(this@Login, Register::class.java)
             startActivity(intent)
-            Toast.makeText(this, "Has hecho click en registro" , Toast.LENGTH_LONG).show()
         }
     }
 }
