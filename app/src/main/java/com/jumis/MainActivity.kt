@@ -1,12 +1,16 @@
 package com.jumis
 
+import CustomAdapter
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val recyclerview = findViewById<RecyclerView>(R.id.recyclerViewMain)
+        val datos = ArrayList<ItemsViewModel>()
         var emailUser: String? = ""
         var passwordUser: String? = ""
         val intent : Intent = intent
@@ -30,15 +36,9 @@ class MainActivity : AppCompatActivity() {
         getSupportActionBar()?.setIcon(R.drawable.logo)
         /*FIN 002*/
 
-        var listView: ListView = findViewById(R.id.listViewMain)
-        var tarea = ArrayList<String>()
-        tarea.add("hola");
+        // this creates a vertical layout Manager
+        recyclerview.layoutManager = LinearLayoutManager(this)
 
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tarea)
-        listView.adapter = adapter;
-        listView.setOnItemClickListener { adapterView, view, i, l ->
-            Toast.makeText(this, "Click", Toast.LENGTH_LONG).show()
-        }
 
         val dataBaseHelper = DatabaseHelper(applicationContext)
         val db_reader = dataBaseHelper.readableDatabase
@@ -88,22 +88,35 @@ class MainActivity : AppCompatActivity() {
         //val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
         //arrayOf("juan@gmail.com"))
         //SELECT *  FROM User, Task, UserTask WHERE UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID
+        //SELECT nameList FROM User, Task WHERE  User.email == "isaac" GROUP BY nameList HAVING count(*)>1
 
         // Issue SQL statement, return the number of deleted rows
         //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf("AS@gmail.com"))
 
-         // Do a query for reading data, return a cursor with all the recovered data
-        val cursor = db_reader.query(
-        "User, Task, UserTask", // The table to query
-        null, // The array of columns to return (pass null to get all)
-            "UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID AND User.email == '" + emailUser + "'", // The columns for the WHERE clause
-        null, // The values for the WHERE clause
-        null, // don't group the rows
-        null, // don't filter by row groups
-        null // The sort order
+        var nombre_lista: String? = ""
+        var nombre_tarea: String? = ""
+
+        val cursorSoloLista = db_reader.query(
+            "User, Task", null, "User.email == '" + emailUser + "'", null,
+            "nameList", "count(*)>1", null
         )
 
-        // Store all recovered data
+        with(cursorSoloLista) {
+            while (moveToNext()) {
+                val itemNameList = getString(getColumnIndexOrThrow("nameList"))
+                nombre_lista = itemNameList
+            }
+        }
+        cursorSoloLista.close()
+
+        val cursor = db_reader.query(
+            "User, Task, UserTask",null,"UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID AND User.email == '" + emailUser + "'", // The columns for the WHERE clause
+            null, // The values for the WHERE clause
+            null, // don't group the rows
+            null, // don't filter by row groups
+            null // The sort order
+        )
+
         with(cursor) {
             while (moveToNext()) {
                 val itemNameTask = getString(getColumnIndexOrThrow("nameTask"))
@@ -111,35 +124,27 @@ class MainActivity : AppCompatActivity() {
                 val itemDescription = getString(getColumnIndexOrThrow("description"))
                 val itemDate = getString(getColumnIndexOrThrow("date"))
                 val itemHour = getString(getColumnIndexOrThrow("hour"))
-                println("Tarea " + itemNameTask)
-                println("Lista " + itemNameList)
-                println("Descripcion " + itemDescription)
+                nombre_tarea = itemNameTask;
             }
         }
         cursor.close()
 
-        val buttonHome: Button = findViewById(R.id.buttonHome)
-        buttonHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("Username", emailUser)
-            intent.putExtra("Password", passwordUser)
-            startActivity(intent)
-        }
+        nombre_lista?.let {
+            nombre_tarea?.let { it1 ->
+                ItemsViewModel(R.drawable.ic_outline_coffee_24,
+                    it, it1
+                )
+            }
+        }?.let { datos.add(it) }
 
-        val buttonSettings: Button = findViewById(R.id.buttonSettings)
-        buttonSettings.setOnClickListener {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
+        val adapter = CustomAdapter(datos)
 
-        val buttonUser: Button = findViewById(R.id.buttonUser)
-        buttonUser.setOnClickListener {
-            var intent : Intent = Intent(this, User::class.java)
-            intent.putExtra("Username", emailUser)
-            intent.putExtra("Password", passwordUser)
-            startActivity(intent)
-        }
+        // Setting the Adapter with the recyclerview
+        recyclerview.adapter = adapter
 
+        recyclerview.setOnClickListener(View.OnClickListener {
+            Toast.makeText(this, "Haces click", Toast.LENGTH_LONG).show()
+        })
 
         /* Profesor
         Paso 1
@@ -184,6 +189,27 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         */
+        val buttonHome: Button = findViewById(R.id.buttonHome)
+        buttonHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Username", emailUser)
+            intent.putExtra("Password", passwordUser)
+            startActivity(intent)
+        }
+
+        val buttonSettings: Button = findViewById(R.id.buttonSettings)
+        buttonSettings.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
+
+        val buttonUser: Button = findViewById(R.id.buttonUser)
+        buttonUser.setOnClickListener {
+            var intent : Intent = Intent(this, User::class.java)
+            intent.putExtra("Username", emailUser)
+            intent.putExtra("Password", passwordUser)
+            startActivity(intent)
+        }
     }
 
     /* Codigo de comentario: #001*/
