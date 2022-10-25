@@ -58,8 +58,8 @@ class Login : AppCompatActivity() {
                     var editTextPasswd : EditText = findViewById(R.id.inputPasswordLogin)
 
                     var intent : Intent = Intent(this@Login, MainActivity::class.java)
-                    intent.putExtra("Username", editTextUser.text.toString())
-                    intent.putExtra("Password", editTextPasswd.text.toString())
+                    intent.putExtra("Username", email_usu.text.toString())
+                    intent.putExtra("Password", pass_usu.text.toString())
 
                     /*FIN 104*/
                     startActivity(intent)
