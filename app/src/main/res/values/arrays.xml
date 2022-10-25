@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipografia">
+        <item>Arial</item>
+        <item>Times New Roman</item>
+    </string-array>
+</resources>
