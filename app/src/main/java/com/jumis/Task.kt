@@ -4,6 +4,7 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.TextView
 
 class Task : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,33 +15,20 @@ class Task : AppCompatActivity() {
         val db_reader_task = dataBaseHelper.readableDatabase
         val db_writer_task = dataBaseHelper.writableDatabase
 
-        // Do a query for reading data, return a cursor with all the recovered data
-        val cursorTask = db_reader_task.query(
-            "Task", // The table to query
-            null, // The array of columns to return (pass null to get all)
-            null, // The columns for the WHERE clause
-            null, // The values for the WHERE clause
-            null, // don't group the rows
-            null, // don't filter by row groups
-            null // The sort order
-        )
+        val textViewTarea = intent.getStringExtra("textViewTareaCard")
+        val textViewDescription = intent.getStringExtra("textViewDescriptionCard")
+        val textViewFecha = intent.getStringExtra("textViewFechaCard")
+        val textViewHora = intent.getStringExtra("textViewHoraCard")
 
-        with(cursorTask) {
-            while (moveToNext()) {
-                val itemTaskID = getLong(getColumnIndexOrThrow("TASKID"))
-                val itemNameTask = getString(getColumnIndexOrThrow("nameTask"))
-                val itemDescription = getString(getColumnIndexOrThrow("description"))
-                val itemNameList = getString(getColumnIndexOrThrow("nameList"))
-                val itemDate = getString(getColumnIndexOrThrow("date"))
-                val itemHour = getString(getColumnIndexOrThrow("hour"))
-                println("Task Id: " + itemTaskID)
-                println("Name Task: " + itemNameTask)
-                println("Description: " + itemDescription)
-                println("Name List: " + itemNameList)
-                println("Date: " + itemDate)
-                println("Hour: " + itemHour)
-            }
-        }
-        cursorTask.close()
+        val nameTask: TextView = findViewById(R.id.nameTask)
+        val textViewDescriptionTask: TextView = findViewById(R.id.textViewDescriptionTask)
+        val textViewFechaTask: TextView = findViewById(R.id.textViewFechaTask)
+        val textViewHoraTask: TextView = findViewById(R.id.textViewHoraTask)
+
+        nameTask.setText(textViewTarea)
+        textViewDescriptionTask.setText(textViewDescription)
+        textViewFechaTask.setText(textViewFecha)
+        textViewHoraTask.setText(textViewHora)
+
     }
 }

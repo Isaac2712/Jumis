@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
         val intent : Intent = intent
         val userNameData = intent.getStringExtra("Username")
         val passwordData = intent.getStringExtra("Password")
+        val dataBaseHelper = DatabaseHelper(applicationContext)
+        val db_reader = dataBaseHelper.readableDatabase
+        val db_writer = dataBaseHelper.writableDatabase
+        val adapter = CustomAdapter(datos)
+
         println("Paso de email: " + userNameData)
         println("Paso de contrasena: " + passwordData)
 
@@ -38,11 +44,6 @@ class MainActivity : AppCompatActivity() {
 
         // this creates a vertical layout Manager
         recyclerview.layoutManager = LinearLayoutManager(this)
-
-
-        val dataBaseHelper = DatabaseHelper(applicationContext)
-        val db_reader = dataBaseHelper.readableDatabase
-        val db_writer = dataBaseHelper.writableDatabase
 
         // CREAMOS TAREA
         var valuesTask = ContentValues().apply {
@@ -94,7 +95,6 @@ class MainActivity : AppCompatActivity() {
         //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf("AS@gmail.com"))
 
         var nombre_lista: String? = ""
-        var nombre_tarea: String? = ""
 
         val cursorSoloLista = db_reader.query(
             "User, Task", null, "User.email == '" + emailUser + "'", null,
@@ -109,8 +109,12 @@ class MainActivity : AppCompatActivity() {
         }
         cursorSoloLista.close()
 
+        val textViewListaMain: TextView = findViewById(R.id.textViewListaMain)
+        textViewListaMain.setText(nombre_lista)
+
         val cursor = db_reader.query(
-            "User, Task, UserTask",null,"UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID AND User.email == '" + emailUser + "'", // The columns for the WHERE clause
+            "User, Task, UserTask",null,
+            "UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID AND User.email == '" + emailUser + "'", // The columns for the WHERE clause
             null, // The values for the WHERE clause
             null, // don't group the rows
             null, // don't filter by row groups
@@ -124,27 +128,13 @@ class MainActivity : AppCompatActivity() {
                 val itemDescription = getString(getColumnIndexOrThrow("description"))
                 val itemDate = getString(getColumnIndexOrThrow("date"))
                 val itemHour = getString(getColumnIndexOrThrow("hour"))
-                nombre_tarea = itemNameTask;
+                datos.add(ItemsViewModel(R.drawable.ic_outline_coffee_24, itemNameTask, itemDescription,itemDate , itemHour))
             }
         }
         cursor.close()
 
-        nombre_lista?.let {
-            nombre_tarea?.let { it1 ->
-                ItemsViewModel(R.drawable.ic_outline_coffee_24,
-                    it, it1
-                )
-            }
-        }?.let { datos.add(it) }
-
-        val adapter = CustomAdapter(datos)
-
-        // Setting the Adapter with the recyclerview
+        // Añadir datos con el adapter a recyclerview
         recyclerview.adapter = adapter
-
-        recyclerview.setOnClickListener(View.OnClickListener {
-            Toast.makeText(this, "Haces click", Toast.LENGTH_LONG).show()
-        })
 
         /* Profesor
         Paso 1
@@ -200,6 +190,8 @@ class MainActivity : AppCompatActivity() {
         val buttonSettings: Button = findViewById(R.id.buttonSettings)
         buttonSettings.setOnClickListener {
             val intent = Intent(this, Settings::class.java)
+            intent.putExtra("Username", emailUser)
+            intent.putExtra("Password", passwordUser)
             startActivity(intent)
         }
 
