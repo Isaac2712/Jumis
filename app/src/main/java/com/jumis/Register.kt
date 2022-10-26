@@ -20,6 +20,7 @@ class Register : AppCompatActivity() {
         val buttonContinuar: Button = findViewById(R.id.buttonContinuarRegistro)
         val inputEmail: EditText = findViewById(R.id.inputEmailRegistro)
         val inputPassword: EditText = findViewById(R.id.inputPasswordRegistro)
+
         buttonContinuar.setOnClickListener {
             if(inputEmail.text.isNotBlank() && inputPassword.text.isNotBlank()) {
                 var values = ContentValues().apply {

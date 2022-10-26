@@ -126,10 +126,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-
-
         /* Profesor
         Paso 1
 
