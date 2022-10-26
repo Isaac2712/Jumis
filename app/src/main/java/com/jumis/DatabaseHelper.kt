@@ -20,6 +20,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("CREATE TABLE UserTask (" +
                 "USERTASKID INTEGER NOT NULL, " +
                 "TASKUSERID TEXT NOT NULL, " +
+                "PRIMARY KEY (USERTASKID, TASKUSERID), " +
                 "FOREIGN KEY(TASKUSERID) REFERENCES Task(TASKID)," +
                 "FOREIGN KEY(USERTASKID) REFERENCES User(USERID))")
 

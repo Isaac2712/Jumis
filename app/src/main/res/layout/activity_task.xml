@@ -34,66 +34,65 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Descripción"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTask" />
-
-    <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextViewDescription"
-        android:layout_width="352dp"
-        android:layout_height="123dp"
-        android:layout_marginTop="12dp"
-        android:text="description"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.271"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
 
     <TextView
         android:id="@+id/textViewFecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="Fecha"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextViewDescription" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:ems="6"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFecha"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionTask" />
 
     <TextView
         android:id="@+id/textViewHora"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="Hora"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintHorizontal_bias="0.246"
         app:layout_constraintStart_toEndOf="@+id/textViewFecha"
-        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextViewDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionTask" />
 
-    <EditText
-        android:id="@+id/editTextTime"
+    <TextView
+        android:id="@+id/textViewDescriptionTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:ems="6"
-        android:inputType="time"
+        android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.342"
-        app:layout_constraintStart_toEndOf="@+id/editTextDate"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHora"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+
+    <TextView
+        android:id="@+id/textViewFechaTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFecha" />
+
+    <TextView
+        android:id="@+id/textViewHoraTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toEndOf="@+id/textViewFechaTask"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHora" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,130 +1,140 @@
 package com.jumis
 
+import CustomAdapter
 import android.content.ContentValues
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.Toast
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        val recyclerview = findViewById<RecyclerView>(R.id.recyclerViewMain)
+        val datos = ArrayList<ItemsViewModel>()
         var emailUser: String? = ""
         var passwordUser: String? = ""
-
-
-
-        /* Codigo comentario: #002 */
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
-        getSupportActionBar()?.setIcon(R.drawable.logo)
-        /*FIN 002*/
-
-
-        val dataBaseHelper = DatabaseHelper(applicationContext)
-        val db_reader = dataBaseHelper.readableDatabase
-        val db_writer = dataBaseHelper.writableDatabase
-
-        /*// Create a new map of values, where column names are the keys
-        var values = ContentValues().apply {
-            put("email", "juan@gmail.com")
-            put("password", "123")
-        }
-
-        // Insert the new row, returning the primary key value of the new row
-        val newRowId = db_writer?.insert("User", null, values)
-        println("INSERT--" + newRowId)*/
-
-        // Update rows, return the number of updated rows
-        //val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
-        //arrayOf("juan@gmail.com"))
-
-        // Issue SQL statement, return the number of deleted rows
-        //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf("AS@gmail.com"))
-
-         // Do a query for reading data, return a cursor with all the recovered data
-        val cursor = db_reader.query(
-        "User", // The table to query
-        null, // The array of columns to return (pass null to get all)
-        null, // The columns for the WHERE clause
-        null, // The values for the WHERE clause
-        null, // don't group the rows
-        null, // don't filter by row groups
-        null // The sort order
-        )
-        // Store all recovered data
-        with(cursor) {
-            while (moveToNext()) {
-                val itemUid = getLong(getColumnIndexOrThrow("USERID"))
-                val itemEmail = getString(getColumnIndexOrThrow("email"))
-                val itemPassword = getString(getColumnIndexOrThrow("password"))
-                //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf(itemEmail.toString()))
-                println("Email " + itemEmail)
-                println("Password " + itemPassword)
-            }
-        }
-        cursor.close()
-
-        val buttonLogin: Button = findViewById(R.id.buttonLogin)
-        buttonLogin.setOnClickListener {
-            val intent = Intent(this, Login::class.java)
-            startActivity(intent)
-        }
-
-        val buttonRegister: Button = findViewById(R.id.buttonRegister)
-        buttonRegister.setOnClickListener {
-            val intent = Intent(this, Register::class.java)
-            startActivity(intent)
-        }
-
-        val buttonHome: Button = findViewById(R.id.buttonHome)
-        buttonHome.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-
-        val buttonSettings: Button = findViewById(R.id.buttonSettings)
-        buttonSettings.setOnClickListener {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
-
-        val buttonUser: Button = findViewById(R.id.buttonUser)
-        buttonUser.setOnClickListener {
-
-                var intent : Intent = Intent(this, User::class.java)
-                intent.putExtra("Username", emailUser)
-                intent.putExtra("Password", passwordUser)
-
-                startActivity(intent)
-
-
-
-        }
-
-        val buttonTask: Button = findViewById(R.id.buttonTask)
-        buttonTask.setOnClickListener {
-            val intent = Intent(this, Task::class.java)
-            startActivity(intent)
-        }
-
-
-
         val intent : Intent = intent
         val userNameData = intent.getStringExtra("Username")
         val passwordData = intent.getStringExtra("Password")
+        val dataBaseHelper = DatabaseHelper(applicationContext)
+        val db_reader = dataBaseHelper.readableDatabase
+        val db_writer = dataBaseHelper.writableDatabase
+        val adapter = CustomAdapter(datos)
+
         println("Paso de email: " + userNameData)
         println("Paso de contrasena: " + passwordData)
 
         emailUser = userNameData
         passwordUser = passwordData
 
+        /* Codigo comentario: #002 */
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        getSupportActionBar()?.setIcon(R.drawable.logo)
+        /*FIN 002*/
 
+        // this creates a vertical layout Manager
+        recyclerview.layoutManager = LinearLayoutManager(this)
+
+        // CREAMOS TAREA
+        var valuesTask = ContentValues().apply {
+            put("nameTask", "Tarea 1 Android")
+            put("description", "Tarea")
+            put("nameList", "Lista ucam")
+            put("date", "2022-10-21")
+            put("hour", "10:30:00")
+        }
+
+        var valuesTask2 = ContentValues().apply {
+            put("nameTask", "Tarea 2 Sistemas")
+            put("description", "Tarea de sistema")
+            put("nameList", "Lista ucam")
+            put("date", "2022-10-25")
+            put("hour", "11:08:00")
+        }
+
+        // INSERTAMOS TAREA
+        var newRowIdTarea = db_writer?.insert("Task", null, valuesTask)
+        println("INSERT--" + newRowIdTarea)
+        var newRowIdTarea2 = db_writer?.insert("Task", null, valuesTask2)
+        println("INSERT--" + newRowIdTarea2)
+
+        // RELACIONAMOS TAREA CON USUARIO
+       var values = ContentValues().apply {
+            put("USERTASKID", "1")
+            put("TASKUSERID", "1")
+        }
+
+        var values2 = ContentValues().apply {
+            put("USERTASKID", "1")
+            put("TASKUSERID", "2")
+        }
+
+        // INSERTAMOS RELACION TAREA CON USUARIO
+        val newRowIdUserTarea = db_writer?.insert("UserTask", null, values)
+        println("INSERT--" + newRowIdUserTarea)
+        val newRowIdUserTarea2 = db_writer?.insert("UserTask", null, values2)
+        println("INSERT--" + newRowIdUserTarea)
+
+        // Update rows, return the number of updated rows
+        //val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
+        //arrayOf("juan@gmail.com"))
+        //SELECT *  FROM User, Task, UserTask WHERE UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID
+        //SELECT nameList FROM User, Task WHERE  User.email == "isaac" GROUP BY nameList HAVING count(*)>1
+
+        // Issue SQL statement, return the number of deleted rows
+        //val deletedRows = db_writer?.delete("User", "email LIKE ?", arrayOf("AS@gmail.com"))
+
+        var nombre_lista: String? = ""
+
+        val cursorSoloLista = db_reader.query(
+            "User, Task", null, "User.email == '" + emailUser + "'", null,
+            "nameList", "count(*)>1", null
+        )
+
+        with(cursorSoloLista) {
+            while (moveToNext()) {
+                val itemNameList = getString(getColumnIndexOrThrow("nameList"))
+                nombre_lista = itemNameList
+            }
+        }
+        cursorSoloLista.close()
+
+        val textViewListaMain: TextView = findViewById(R.id.textViewListaMain)
+        textViewListaMain.setText(nombre_lista)
+
+        val cursor = db_reader.query(
+            "User, Task, UserTask",null,
+            "UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID AND User.email == '" + emailUser + "'", // The columns for the WHERE clause
+            null, // The values for the WHERE clause
+            null, // don't group the rows
+            null, // don't filter by row groups
+            null // The sort order
+        )
+
+        with(cursor) {
+            while (moveToNext()) {
+                val itemNameTask = getString(getColumnIndexOrThrow("nameTask"))
+                val itemNameList = getString(getColumnIndexOrThrow("nameList"))
+                val itemDescription = getString(getColumnIndexOrThrow("description"))
+                val itemDate = getString(getColumnIndexOrThrow("date"))
+                val itemHour = getString(getColumnIndexOrThrow("hour"))
+                datos.add(ItemsViewModel(R.drawable.ic_outline_coffee_24, itemNameTask, itemDescription,itemDate , itemHour))
+            }
+        }
+        cursor.close()
+
+        // Añadir datos con el adapter a recyclerview
+        recyclerview.adapter = adapter
 
         /* Profesor
         Paso 1
@@ -169,6 +179,29 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         */
+        val buttonHome: Button = findViewById(R.id.buttonHome)
+        buttonHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Username", emailUser)
+            intent.putExtra("Password", passwordUser)
+            startActivity(intent)
+        }
+
+        val buttonSettings: Button = findViewById(R.id.buttonSettings)
+        buttonSettings.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            intent.putExtra("Username", emailUser)
+            intent.putExtra("Password", passwordUser)
+            startActivity(intent)
+        }
+
+        val buttonUser: Button = findViewById(R.id.buttonUser)
+        buttonUser.setOnClickListener {
+            var intent : Intent = Intent(this, User::class.java)
+            intent.putExtra("Username", emailUser)
+            intent.putExtra("Password", passwordUser)
+            startActivity(intent)
+        }
     }
 
     /* Codigo de comentario: #001*/

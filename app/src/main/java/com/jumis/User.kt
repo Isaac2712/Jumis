@@ -45,18 +45,24 @@ class User : AppCompatActivity() {
         val buttonHomeUser: Button = findViewById(R.id.buttonHomeUser)
         buttonHomeUser.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("Username", userNameData.toString())
+            intent.putExtra("Password", passwordData.toString())
             startActivity(intent)
         }
 
         val buttonSettingsUser: Button = findViewById(R.id.buttonSettingsUser)
         buttonSettingsUser.setOnClickListener {
             val intent = Intent(this, Settings::class.java)
+            intent.putExtra("Username", userNameData.toString())
+            intent.putExtra("Password", passwordData.toString())
             startActivity(intent)
         }
 
         val buttonUserUser: Button = findViewById(R.id.buttonUserUser)
         buttonUserUser.setOnClickListener {
             val intent = Intent(this, User::class.java)
+            intent.putExtra("Username", userNameData.toString())
+            intent.putExtra("Password", passwordData.toString())
             startActivity(intent)
         }
 

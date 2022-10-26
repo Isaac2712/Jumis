@@ -15,6 +15,11 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        val userNameData = intent.getStringExtra("Username")
+        val passwordData = intent.getStringExtra("Password")
+
+        println("Settings Paso de email: " + userNameData.toString())
+
         /* Codigo comentario: #003 */
         val switch = findViewById<Switch>(R.id.switchTemaOscuro)
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -53,18 +58,24 @@ class Settings : AppCompatActivity() {
             val buttonHomeSettings: Button = findViewById(R.id.buttonHomeSettings)
             buttonHomeSettings.setOnClickListener {
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("Username", userNameData.toString())
+                intent.putExtra("Password", passwordData.toString())
                 startActivity(intent)
             }
 
             val buttonSettingsSettings: Button = findViewById(R.id.buttonSettingsSettings)
             buttonSettingsSettings.setOnClickListener {
                 val intent = Intent(this, Settings::class.java)
+                intent.putExtra("Username", userNameData.toString())
+                intent.putExtra("Password", passwordData.toString())
                 startActivity(intent)
             }
 
             val buttonUserSettings: Button = findViewById(R.id.buttonUserSettings)
             buttonUserSettings.setOnClickListener {
                 val intent = Intent(this, User::class.java)
+                intent.putExtra("Username", userNameData.toString())
+                intent.putExtra("Password", passwordData.toString())
                 startActivity(intent)
             }
 
