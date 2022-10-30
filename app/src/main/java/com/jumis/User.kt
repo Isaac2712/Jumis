@@ -34,7 +34,9 @@ class User : AppCompatActivity() {
         var textViewPassword : TextView = findViewById(R.id.textViewUserPassword)
         var editTextEmail : EditText = findViewById(R.id.EditTextEmail)
         var editTextPassword : EditText = findViewById(R.id.EditTextPassword)
+
         var buttonCancelar : Button = findViewById(R.id.buttonCancelar)
+
 
         textViewUser.text = emailUser
         textViewPassword.text = passwordUser

@@ -15,17 +15,22 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
+    var emailUser: String? = ""
+    var passwordUser: String? = ""
+    var itemIdUser: String? = ""
+    var itemIdTask: String? = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerViewMain)
         val datos = ArrayList<ItemsViewModel>()
-        var emailUser: String? = ""
-        var passwordUser: String? = ""
+
         val intent : Intent = intent
         val userNameData = intent.getStringExtra("Username")
         val passwordData = intent.getStringExtra("Password")
+
         val dataBaseHelper = DatabaseHelper(applicationContext)
         val db_reader = dataBaseHelper.readableDatabase
         val db_writer = dataBaseHelper.writableDatabase
@@ -62,12 +67,82 @@ class MainActivity : AppCompatActivity() {
             put("hour", "11:08:00")
         }
 
+        //
+
+        //val intent : Intent = intent
+        val nameTask = intent.getStringExtra("nameTask")
+        val description = intent.getStringExtra("description")
+        val date = intent.getStringExtra("date")
+        val hour = intent.getStringExtra("hour")
+        if(nameTask != null && description != null && date != null && hour != null){
+            var valuesNewTask = ContentValues().apply {
+                put("nameTask", nameTask)
+                put("description", description)
+                put("nameList", "Lista ucam")
+                put("date", date)
+                put("hour", hour)
+            }
+
+            var newRowIdTarea = db_writer?.insert("Task", null, valuesNewTask)
+            println("INSERT Table Task:--" + newRowIdTarea)
+
+            // Pedir a la BBDD id del usuario y de la tarea
+
+            val cursorUsuario = db_reader.query(
+                "User",null,
+                "User.email == '" + emailUser + "'", // The columns for the WHERE clause
+                null, // The values for the WHERE clause
+                null, // don't group the rows
+                null, // don't filter by row groups
+                null // The sort order
+            )
+            with(cursorUsuario) {
+                while (moveToNext()) {
+                    itemIdUser = getString(getColumnIndexOrThrow("USERID"))
+                }
+            }
+            cursorUsuario.close()
+
+            val cursorTarea = db_reader.query(
+                "Task",null,
+                "Task.NameTask == '" + nameTask + "' AND Task.description == '" + description + "'", // The columns for the WHERE clause
+                null, // The values for the WHERE clause
+                null, // don't group the rows
+                null, // don't filter by row groups
+                null // The sort order
+            )
+            with(cursorTarea) {
+                while (moveToNext()) {
+                    itemIdTask = getString(getColumnIndexOrThrow("TASKID"))
+                }
+            }
+            cursorTarea.close()
+
+            var valuesNewTaskRelation = ContentValues().apply {
+                put("USERTASKID", itemIdUser)
+                put("TASKUSERID", itemIdTask)
+            }
+
+            val newRowIdUserTarea = db_writer?.insert("UserTask", null, valuesNewTaskRelation)
+            println("INSERT Table UserTask--" + newRowIdUserTarea)
+            println("itemIdUser--" + itemIdUser)
+            println("itemIdTask--" + itemIdTask)
+
+        }
+        //
+
+
+
+
+
+        /*
+
         // INSERTAMOS TAREA
         var newRowIdTarea = db_writer?.insert("Task", null, valuesTask)
         println("INSERT--" + newRowIdTarea)
         var newRowIdTarea2 = db_writer?.insert("Task", null, valuesTask2)
         println("INSERT--" + newRowIdTarea2)
-
+        */
         // RELACIONAMOS TAREA CON USUARIO
        var values = ContentValues().apply {
             put("USERTASKID", "1")
@@ -80,11 +155,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         // INSERTAMOS RELACION TAREA CON USUARIO
+        /*
         val newRowIdUserTarea = db_writer?.insert("UserTask", null, values)
         println("INSERT--" + newRowIdUserTarea)
         val newRowIdUserTarea2 = db_writer?.insert("UserTask", null, values2)
         println("INSERT--" + newRowIdUserTarea)
-
+        */
         // Update rows, return the number of updated rows
         //val updatedRows = db_writer.update("Usuario", values,"email LIKE ?",
         //arrayOf("juan@gmail.com"))
@@ -218,8 +294,13 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.añadirNuevaTarea -> {
-                Toast.makeText(this, "Tarea", Toast.LENGTH_LONG)
+                /*Toast.makeText(this, "Tarea", Toast.LENGTH_LONG)
                     .show()
+                return true*/
+                var intent : Intent = Intent(this, newTask::class.java)
+                intent.putExtra("Username", emailUser)
+                intent.putExtra("Password", passwordUser)
+                startActivity(intent)
                 return true
             }
             R.id.btnMore -> {
