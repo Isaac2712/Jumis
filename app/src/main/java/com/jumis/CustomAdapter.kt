@@ -31,17 +31,26 @@ class CustomAdapter(private val mList: List<ItemsViewModel>): RecyclerView.Adapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val ItemsViewModel = mList[position]
         holder.imageView.setImageResource(ItemsViewModel.image)
+        holder.textViewIdUser.text = ItemsViewModel.textoIdUser
+        holder.textViewIdTarea.text = ItemsViewModel.textoId
         holder.textViewTareaCard.text = ItemsViewModel.textoTarea
         holder.textViewDescriptionCard.text = ItemsViewModel.textoDescipcion
         holder.textViewFechaCard.text = ItemsViewModel.textoFecha
         holder.textViewHoraCard.text = ItemsViewModel.textoHora
 
         holder.itemView.setOnClickListener(){
-            val  intent = Intent(holder.itemView.context, Task::class.java)
+            val intent = Intent(holder.itemView.context, Task::class.java)
+            intent.putExtra("textViewIdUser",ItemsViewModel.textoIdUser)
+            intent.putExtra("textViewIdTarea",ItemsViewModel.textoId)
             intent.putExtra("textViewTareaCard", ItemsViewModel.textoTarea)
             intent.putExtra("textViewDescriptionCard",ItemsViewModel.textoDescipcion)
             intent.putExtra("textViewFechaCard",ItemsViewModel.textoFecha)
             intent.putExtra("textViewHoraCard",ItemsViewModel.textoHora)
+
+            val intent2 = intent
+
+            println("---viewHolder: " + intent2.getStringExtra("Username").toString())
+
             holder.itemView.context.startActivity(intent)
         }
     }
@@ -54,6 +63,10 @@ class CustomAdapter(private val mList: List<ItemsViewModel>): RecyclerView.Adapt
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
+        val textViewIdTarea: TextView = itemView.findViewById(R.id.textViewIdTarea)
+        val textViewIdUser: TextView = itemView.findViewById(R.id.textViewIdUser)
+
+
         val textViewTareaCard: TextView = itemView.findViewById(R.id.textViewTareaCard)
         val textViewDescriptionCard: TextView = itemView.findViewById(R.id.textViewDescriptionCard)
         val textViewFechaCard: TextView = itemView.findViewById(R.id.textViewFechaCard)

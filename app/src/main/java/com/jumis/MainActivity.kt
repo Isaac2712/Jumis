@@ -27,20 +27,96 @@ class MainActivity : AppCompatActivity() {
         val recyclerview = findViewById<RecyclerView>(R.id.recyclerViewMain)
         val datos = ArrayList<ItemsViewModel>()
 
-        val intent : Intent = intent
-        val userNameData = intent.getStringExtra("Username")
-        val passwordData = intent.getStringExtra("Password")
-
         val dataBaseHelper = DatabaseHelper(applicationContext)
         val db_reader = dataBaseHelper.readableDatabase
         val db_writer = dataBaseHelper.writableDatabase
         val adapter = CustomAdapter(datos)
 
-        println("Paso de email: " + userNameData)
-        println("Paso de contrasena: " + passwordData)
+        var userNameData: String? = null
+        var passwordData: String? = null
 
+
+        val intent : Intent = intent
+        val idUserName = intent.getStringExtra("idUsername")
+        userNameData = intent.getStringExtra("Username")
+        passwordData = intent.getStringExtra("Password")
+
+        println("---Work Main Id User: " + idUserName)
+
+        println("---Worky Main Id User: " + userNameData.toString())
+        println("---Worky Main Password User: " + passwordData.toString())
+
+
+
+        itemIdUser = idUserName
+        val IDTareaEliminada = intent.getStringExtra("IDTareaEliminada")
+
+        if(idUserName != null){
+
+            val cursorUser = db_reader.query("User",null,
+                "User.USERID == '" + idUserName + "'", // The columns for the WHERE clause
+                null, // The values for the WHERE clause
+                null, // don't group the rows
+                null, // don't filter by row groups
+                null // The sort order
+            )
+            with(cursorUser) {
+                while (moveToNext()) {
+                    userNameData = getString(getColumnIndexOrThrow("email"))
+                    passwordData = getString(getColumnIndexOrThrow("password"))
+                }
+            }
+            cursorUser.close()
+
+            println("---Work if")
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        println("Paso Main de email: " + userNameData)
+        println("Paso Main de contrasena: " + passwordData)
+
+        itemIdUser = idUserName
         emailUser = userNameData
         passwordUser = passwordData
+
+        //
+
+        // Pedir a la BBDD id del usuario y de la tarea
+
+        val cursorUsuario = db_reader.query(
+            "User",null,
+            "User.email == '" + emailUser + "'", // The columns for the WHERE clause
+            null, // The values for the WHERE clause
+            null, // don't group the rows
+            null, // don't filter by row groups
+            null // The sort order
+        )
+        with(cursorUsuario) {
+            while (moveToNext()) {
+                itemIdUser = getString(getColumnIndexOrThrow("USERID"))
+            }
+        }
+        cursorUsuario.close()
+
+        if(IDTareaEliminada != null){
+            println("Id tarea eliminada en Main: " + IDTareaEliminada)
+
+        }
+
+
+        //
+
+
 
         /* Codigo comentario: #002 */
         getSupportActionBar()?.setDisplayShowHomeEnabled(true)
@@ -86,22 +162,8 @@ class MainActivity : AppCompatActivity() {
             var newRowIdTarea = db_writer?.insert("Task", null, valuesNewTask)
             println("INSERT Table Task:--" + newRowIdTarea)
 
-            // Pedir a la BBDD id del usuario y de la tarea
 
-            val cursorUsuario = db_reader.query(
-                "User",null,
-                "User.email == '" + emailUser + "'", // The columns for the WHERE clause
-                null, // The values for the WHERE clause
-                null, // don't group the rows
-                null, // don't filter by row groups
-                null // The sort order
-            )
-            with(cursorUsuario) {
-                while (moveToNext()) {
-                    itemIdUser = getString(getColumnIndexOrThrow("USERID"))
-                }
-            }
-            cursorUsuario.close()
+
 
             val cursorTarea = db_reader.query(
                 "Task",null,
@@ -188,6 +250,8 @@ class MainActivity : AppCompatActivity() {
         val textViewListaMain: TextView = findViewById(R.id.textViewListaMain)
         textViewListaMain.setText(nombre_lista)
 
+        println("---Work emailUser: " + emailUser)
+
         val cursor = db_reader.query(
             "User, Task, UserTask",null,
             "UserTask.USERTASKID == User.USERID AND UserTask.TASKUSERID == Task.TASKID AND User.email == '" + emailUser + "'", // The columns for the WHERE clause
@@ -197,14 +261,18 @@ class MainActivity : AppCompatActivity() {
             null // The sort order
         )
 
+
+
         with(cursor) {
             while (moveToNext()) {
+
+                val itemIdTask = getString(getColumnIndexOrThrow("TASKID"))
                 val itemNameTask = getString(getColumnIndexOrThrow("nameTask"))
                 val itemNameList = getString(getColumnIndexOrThrow("nameList"))
                 val itemDescription = getString(getColumnIndexOrThrow("description"))
                 val itemDate = getString(getColumnIndexOrThrow("date"))
                 val itemHour = getString(getColumnIndexOrThrow("hour"))
-                datos.add(ItemsViewModel(R.drawable.ic_outline_coffee_24, itemNameTask, itemDescription,itemDate , itemHour))
+                datos.add(ItemsViewModel(R.drawable.ic_outline_coffee_24, itemIdUser, itemIdTask, itemNameTask, itemDescription,itemDate , itemHour))
             }
         }
         cursor.close()
