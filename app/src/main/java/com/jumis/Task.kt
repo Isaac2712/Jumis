@@ -16,8 +16,6 @@ class Task : AppCompatActivity() {
         val dataBaseHelper = DatabaseHelper(applicationContext)
         val db_reader = dataBaseHelper.readableDatabase
         val db_writer = dataBaseHelper.writableDatabase
-
-
         val itemIdUser = intent.getStringExtra("textViewIdUser")
         val itemIdTask = intent.getStringExtra("textViewIdTarea")
 
@@ -27,20 +25,12 @@ class Task : AppCompatActivity() {
         var itemIdUserTask: String? = ""
         var emailUser: String? = ""
         var passwordUser: String? = ""
-
         var userId: String? = ""
-
-
         val intent : Intent = intent
-
-
         val textViewTarea = intent.getStringExtra("textViewTareaCard")
         val textViewDescription = intent.getStringExtra("textViewDescriptionCard")
         val textViewFecha = intent.getStringExtra("textViewFechaCard")
         val textViewHora = intent.getStringExtra("textViewHoraCard")
-
-
-
         val nameTask: TextView = findViewById(R.id.nameTask)
         val textViewDescriptionTask: TextView = findViewById(R.id.textViewDescriptionTask)
         val textViewFechaTask: TextView = findViewById(R.id.textViewFechaTask)
@@ -51,17 +41,8 @@ class Task : AppCompatActivity() {
         textViewFechaTask.setText(textViewFecha)
         textViewHoraTask.setText(textViewHora)
 
-
-
-
-
-
         val buttonEliminar: Button = findViewById(R.id.buttonEliminarTarea)
         buttonEliminar.setOnClickListener {
-            //
-
-
-
             val cursorUserTarea = db_reader.query("UserTask",null,
                 "UserTask.TASKUSERID == '" + itemIdTask + "'", // The columns for the WHERE clause
                 null, // The values for the WHERE clause
@@ -115,10 +96,7 @@ class Task : AppCompatActivity() {
             println("---emailUser en Eliminar Task: " + emailUser)
 
             startActivity(intent)
-
-            //
         }
-
 
         println("---emailUser en Task: " + emailUser)
 
@@ -147,15 +125,5 @@ class Task : AppCompatActivity() {
             intent.putExtra("Password", passwordUser)
             startActivity(intent)
         }
-
-
-
-
-
-
-
-
-
-
     }
 }

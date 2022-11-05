@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
+        app:layout_constraintVertical_bias="0.625" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -176,7 +176,7 @@
         app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailUsuario"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintVertical_bias="0.014" />
 
     <TextView
         android:id="@+id/textViewUserPassword"
@@ -200,7 +200,7 @@
         app:layout_constraintHorizontal_bias="0.59"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewEmailUsuario"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintVertical_bias="0.014" />
 
     <EditText
         android:id="@+id/EditTextPassword"

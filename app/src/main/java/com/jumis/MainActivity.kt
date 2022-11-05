@@ -46,8 +46,6 @@ class MainActivity : AppCompatActivity() {
         println("---Worky Main Id User: " + userNameData.toString())
         println("---Worky Main Password User: " + passwordData.toString())
 
-
-
         itemIdUser = idUserName
         val IDTareaEliminada = intent.getStringExtra("IDTareaEliminada")
 
@@ -72,16 +70,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
-
-
-
-
-
-
-
-
-
         println("Paso Main de email: " + userNameData)
         println("Paso Main de contrasena: " + passwordData)
 
@@ -89,10 +77,7 @@ class MainActivity : AppCompatActivity() {
         emailUser = userNameData
         passwordUser = passwordData
 
-        //
-
         // Pedir a la BBDD id del usuario y de la tarea
-
         val cursorUsuario = db_reader.query(
             "User",null,
             "User.email == '" + emailUser + "'", // The columns for the WHERE clause
@@ -110,14 +95,7 @@ class MainActivity : AppCompatActivity() {
 
         if(IDTareaEliminada != null){
             println("Id tarea eliminada en Main: " + IDTareaEliminada)
-
         }
-
-
-        //
-
-
-
         /* Codigo comentario: #002 */
         getSupportActionBar()?.setDisplayShowHomeEnabled(true)
         getSupportActionBar()?.setIcon(R.drawable.logo)
@@ -143,14 +121,12 @@ class MainActivity : AppCompatActivity() {
             put("hour", "11:08:00")
         }
 
-        //
-
         //val intent : Intent = intent
         val nameTask = intent.getStringExtra("nameTask")
         val description = intent.getStringExtra("description")
         val date = intent.getStringExtra("date")
         val hour = intent.getStringExtra("hour")
-        if(nameTask != null && description != null && date != null && hour != null){
+        if(nameTask != null && description != null && date != null && hour != null) {
             var valuesNewTask = ContentValues().apply {
                 put("nameTask", nameTask)
                 put("description", description)
@@ -162,11 +138,8 @@ class MainActivity : AppCompatActivity() {
             var newRowIdTarea = db_writer?.insert("Task", null, valuesNewTask)
             println("INSERT Table Task:--" + newRowIdTarea)
 
-
-
-
             val cursorTarea = db_reader.query(
-                "Task",null,
+                "Task", null,
                 "Task.NameTask == '" + nameTask + "' AND Task.description == '" + description + "'", // The columns for the WHERE clause
                 null, // The values for the WHERE clause
                 null, // don't group the rows
@@ -189,22 +162,14 @@ class MainActivity : AppCompatActivity() {
             println("INSERT Table UserTask--" + newRowIdUserTarea)
             println("itemIdUser--" + itemIdUser)
             println("itemIdTask--" + itemIdTask)
-
         }
-        //
 
-
-
-
-
-        /*
-
-        // INSERTAMOS TAREA
+        /* INSERTAMOS TAREA
         var newRowIdTarea = db_writer?.insert("Task", null, valuesTask)
         println("INSERT--" + newRowIdTarea)
         var newRowIdTarea2 = db_writer?.insert("Task", null, valuesTask2)
-        println("INSERT--" + newRowIdTarea2)
-        */
+        println("INSERT--" + newRowIdTarea2)*/
+
         // RELACIONAMOS TAREA CON USUARIO
        var values = ContentValues().apply {
             put("USERTASKID", "1")
@@ -261,8 +226,6 @@ class MainActivity : AppCompatActivity() {
             null // The sort order
         )
 
-
-
         with(cursor) {
             while (moveToNext()) {
 
@@ -280,49 +243,6 @@ class MainActivity : AppCompatActivity() {
         // Añadir datos con el adapter a recyclerview
         recyclerview.adapter = adapter
 
-        /* Profesor
-        Paso 1
-
-        var buttonLogin : Button = findViewById(R.id.buttonLogin)
-        var buttonRegister : Button = findViewById(R.id.buttonRegister)
-
-        buttonRegister.setOnClickListener {
-            var intent = Intent(this, User::class.java)
-            startActivity(intent)
-        }
-        --Al login--
-
-        --Paso 2
-        buttonLogin.setOnClickListener {
-            var editTextUser : EditText = findViewById(R.id.editTextUser)
-            var editTextPasswd : EditText = findViewById(R.id.editTextPasswd)
-
-            if(editTextUser.text.toString().equals("Juan") && editTextPasswd.text.toString().equals("1234")){
-                var intent : Intent = Intent(this, Home::class.java)
-                intent.putExtra("Username", editTextUser.text.toString())
-            }
-            --Le manda el contenido de editTextUser al home
-            * Ir a home
-
-            var intent = Intent(this, User::class.java)
-            startActivity(intent)
-        }
-
-        --Para que la app acceda a la cámara
-        buttonFoto.setOnClickListener {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivity(intent)
-        }
-        *** Importante ***: hay un intent para alarmas y calendario, para las tareas
-
-        --Para abrir un enlace de internet
-        buttonGoogle.setOnClickListener {
-            val i = Intent(intent.ACTION_VIEW)
-            i.data = Uri.parse("https://www.google.es")
-            startActivity(i)
-            startActivity(intent)
-        }
-        */
         val buttonHome: Button = findViewById(R.id.buttonHome)
         buttonHome.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -356,15 +276,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
-            R.id.añadirNuevaLista -> {
+            /*R.id.añadirNuevaLista -> {
                 Toast.makeText(this, "Lista", Toast.LENGTH_LONG)
                     .show()
                 return true
-            }
+            }*/
             R.id.añadirNuevaTarea -> {
-                /*Toast.makeText(this, "Tarea", Toast.LENGTH_LONG)
-                    .show()
-                return true*/
+                //Toast.makeText(this, "Tarea", Toast.LENGTH_LONG).show()
                 var intent : Intent = Intent(this, newTask::class.java)
                 intent.putExtra("Username", emailUser)
                 intent.putExtra("Password", passwordUser)
@@ -372,8 +290,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.btnMore -> {
-                Toast.makeText(this, "More", Toast.LENGTH_LONG)
-                    .show()
+                //Toast.makeText(this, "More", Toast.LENGTH_LONG).show()
                 return true
             }
             else -> super.onOptionsItemSelected(item)

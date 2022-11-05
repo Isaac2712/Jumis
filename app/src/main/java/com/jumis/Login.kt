@@ -53,14 +53,11 @@ class Login : AppCompatActivity() {
                 if(usuarioEncontrado)
                 {
                     /*Codigo comentario: #104 */
-
                     var editTextUser : EditText = findViewById(R.id.inputEmailLogin)
                     var editTextPasswd : EditText = findViewById(R.id.inputPasswordLogin)
-
                     var intent : Intent = Intent(this@Login, MainActivity::class.java)
                     intent.putExtra("Username", email_usu.text.toString())
                     intent.putExtra("Password", pass_usu.text.toString())
-
                     /*FIN 104*/
                     startActivity(intent)
                 } else

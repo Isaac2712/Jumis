@@ -19,44 +19,27 @@ class newTask : AppCompatActivity() {
         println("Paso newTask de email: " + userNameData)
         println("Paso newTask de contrasena: " + passwordData)
 
-
-
         val buttonCrearTarea: Button = findViewById(R.id.buttonCrearTarea)
         buttonCrearTarea.setOnClickListener {
-
-            //
-
-
             val nombreTarea: TextInputEditText = findViewById(R.id.inputNombreTarea)
             val descripcion: TextInputEditText = findViewById(R.id.descripcion)
             val fecha: TextInputEditText = findViewById(R.id.inputFecha)
             val hora: TextInputEditText = findViewById(R.id.inputHora)
-
-
-
             var intent : Intent = Intent(this, MainActivity::class.java)
 
             if(nombreTarea.text.toString().isNotBlank() && descripcion.text.toString().isNotBlank() && fecha.text.toString().isNotBlank() && hora.text.toString().isNotBlank()){
                 intent.putExtra("Username", userNameData)
                 intent.putExtra("Password", passwordData)
-
                 intent.putExtra("nameTask", nombreTarea.text.toString())
                 intent.putExtra("description", descripcion.text.toString())
                 intent.putExtra("date", fecha.text.toString())
                 intent.putExtra("hour", hora.text.toString())
-
                 startActivity(intent)
             }
             else{
                 Toast.makeText(this, "Rellene los campos vacios", Toast.LENGTH_LONG).show()
             }
-
-
-            //
-
         }
-
-
 
         val buttonHome: Button = findViewById(R.id.buttonHome2)
         buttonHome.setOnClickListener {
@@ -81,7 +64,5 @@ class newTask : AppCompatActivity() {
             intent.putExtra("Password", passwordData)
             startActivity(intent)
         }
-
-
     }
 }

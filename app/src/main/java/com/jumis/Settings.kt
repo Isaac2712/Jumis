@@ -17,13 +17,13 @@ class Settings : AppCompatActivity() {
 
         val userNameData = intent.getStringExtra("Username")
         val passwordData = intent.getStringExtra("Password")
-
         println("Settings Paso de email: " + userNameData.toString())
 
         /* Codigo comentario: #003 */
         val switch = findViewById<Switch>(R.id.switchTemaOscuro)
         switch.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
+                Toast.makeText(this, "LLega", Toast.LENGTH_LONG).show()
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 delegate.applyDayNight()
             } else {
@@ -48,12 +48,10 @@ class Settings : AppCompatActivity() {
                     id: Long
                 ) {
                 }
-
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
                 }
             }
-
 
             val buttonHomeSettings: Button = findViewById(R.id.buttonHomeSettings)
             buttonHomeSettings.setOnClickListener {

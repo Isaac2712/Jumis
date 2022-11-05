@@ -22,21 +22,16 @@ class User : AppCompatActivity() {
         val intent : Intent = intent
         val userNameData = intent.getStringExtra("Username")
         val passwordData = intent.getStringExtra("Password")
-
         val dataBaseHelper = DatabaseHelper(applicationContext)
         val db_reader = dataBaseHelper.readableDatabase
         val db_writer = dataBaseHelper.writableDatabase
-
         var emailUser: String? = userNameData
         var passwordUser: String? = passwordData
-
         var textViewUser : TextView = findViewById(R.id.textViewUserEmail)
         var textViewPassword : TextView = findViewById(R.id.textViewUserPassword)
         var editTextEmail : EditText = findViewById(R.id.EditTextEmail)
         var editTextPassword : EditText = findViewById(R.id.EditTextPassword)
-
         var buttonCancelar : Button = findViewById(R.id.buttonCancelar)
-
 
         textViewUser.text = emailUser
         textViewPassword.text = passwordUser

@@ -65,8 +65,6 @@ class CustomAdapter(private val mList: List<ItemsViewModel>): RecyclerView.Adapt
         val imageView: ImageView = itemView.findViewById(R.id.imageview)
         val textViewIdTarea: TextView = itemView.findViewById(R.id.textViewIdTarea)
         val textViewIdUser: TextView = itemView.findViewById(R.id.textViewIdUser)
-
-
         val textViewTareaCard: TextView = itemView.findViewById(R.id.textViewTareaCard)
         val textViewDescriptionCard: TextView = itemView.findViewById(R.id.textViewDescriptionCard)
         val textViewFechaCard: TextView = itemView.findViewById(R.id.textViewFechaCard)
